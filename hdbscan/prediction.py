@@ -589,13 +589,14 @@ def membership_vector(clusterer, points_to_predict):
         result[i] = distance_vec ** 0.5 * outlier_vec ** 2.0
         result[i] /= result[i].sum()
 
-        result[i] *= prob_in_some_cluster(
-            nearest_neighbor,
-            lambda_,
-            clusters,
-            clusterer.condensed_tree_._raw_tree,
-            clusterer.prediction_data_.leaf_max_lambdas,
-            clusterer.prediction_data_.cluster_tree)
+      # Commenting out this section to allow soft-clustering all noise points
+        # result[i] *= prob_in_some_cluster(
+        #    nearest_neighbor,
+        #    lambda_,
+        #    clusters,
+        #    clusterer.condensed_tree_._raw_tree,
+        #    clusterer.prediction_data_.leaf_max_lambdas,
+        #    clusterer.prediction_data_.cluster_tree)
 
     return result
 
